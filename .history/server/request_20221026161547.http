@@ -1,0 +1,134 @@
+
+
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "username" : "truong1",
+  "password" : "truong"
+}
+
+### 
+
+POST http://localhost:5000/api/auth/login
+Content-Type:  application/json
+
+{
+  "username": "truong1",
+  "password": "truong1"
+}
+
+###
+GET http://localhost:5000/api/auth/getAllUser
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmVjY2ZiMjBmOGQ2ZWE5NDcwNjQzOTYiLCJpYXQiOjE2NTk2ODczMjl9.wO71LQiLWeZNF4bb-E-ews2WqD4GOj__ZlxvvdpHTPc
+
+###
+GET http://localhost:5000/api/auth
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRkMTE1YmRkMjUxOTYzNTE3YWRiYjUiLCJpYXQiOjE2NTkwMjIwMDZ9.56Sb2U0Nc7hUkSlmmDG-oG40BFuXbIFzAyijl-QIhTs
+###
+
+POST http://localhost:5000/api/posts
+Content-Type: application/json 
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmFjNGE1YzM3YTVlMzMwNWM5NjJhYTIiLCJpYXQiOjE2NTU0NTg0Njd9.OnqHA2ALdZawNHL7G--vfiXXauTQoASrkzZMYbMWeco
+
+{
+  "title": "First Blogg",
+  "description": "This is desc of first blogg",
+  "user": ""
+}
+
+###
+POST http://localhost:5000/api/author
+Content-Type: application/json 
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzJkOTcyZTA4ZjZlZDBkODhlMWQ5MDMiLCJpYXQiOjE2NjUwNjA5MDR9.ynQZdrniCpCsxfps5aFO-IK0ZBnK_otFW92eDdFy7Os
+
+{
+  "fullName": "truong",
+  "address": "Diachi", 
+  "avatarUrl": "avturl", 
+  "birthDate" :"ngaysinh" 
+}
+###
+POST http://localhost:5000/api/category
+Content-Type: application/json 
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzJkOTcyZTA4ZjZlZDBkODhlMWQ5MDMiLCJpYXQiOjE2NjUwNjA5MDR9.ynQZdrniCpCsxfps5aFO-IK0ZBnK_otFW92eDdFy7Os
+
+{
+  "name": "truong",
+  "des": "Diachi"
+}
+###
+
+GET http://localhost:5000/api/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRkMTE1YmRkMjUxOTYzNTE3YWRiYjUiLCJpYXQiOjE2NTg2NzM3Mzl9.Tkggg8jEswsEjZl7f7FHJNo6BGcbJebWdEQs4s-e4ac
+
+###
+GET http://localhost:5000/api/posts/getAllBlogs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRkMTE1YmRkMjUxOTYzNTE3YWRiYjUiLCJpYXQiOjE2NTg2NzM3Mzl9.Tkggg8jEswsEjZl7f7FHJNo6BGcbJebWdEQs4s-e4ac
+###
+GET http://localhost:5000/api/author/getAllAuthors
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRkMTE1YmRkMjUxOTYzNTE3YWRiYjUiLCJpYXQiOjE2NTg2NzM3Mzl9.Tkggg8jEswsEjZl7f7FHJNo6BGcbJebWdEQs4s-e4ac
+
+###
+PUT http://localhost:5000/api/author/63483432c667da1228ff1d87
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRkMTE1YmRkMjUxOTYzNTE3YWRiYjUiLCJpYXQiOjE2NTg2NzM3Mzl9.Tkggg8jEswsEjZl7f7FHJNo6BGcbJebWdEQs4s-e4ac
+
+{
+  "fullName": "Draku Truongasdasd",
+  "address": "Dormitory A", 
+  "avatarUrl": "xyz", 
+  "birthDate" :"ngay 5/11"
+}
+###
+DELETE http://localhost:5000/api/author/63482abf78a5c6931ddad1ee
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRkMTE1YmRkMjUxOTYzNTE3YWRiYjUiLCJpYXQiOjE2NTg2NzM3Mzl9.Tkggg8jEswsEjZl7f7FHJNo6BGcbJebWdEQs4s-e4ac
+###
+PUT http://localhost:5000/api/posts/62b17a3c36eaaea02aa74ba1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmFjNGE1YzM3YTVlMzMwNWM5NjJhYTIiLCJpYXQiOjE2NTU0NTg0Njd9.OnqHA2ALdZawNHL7G--vfiXXauTQoASrkzZMYbMWeco
+
+{
+  "title": "my first update",
+  "description": "vuejs",
+  "url": "vue.org",
+  "status":  "Learning"
+} 
+
+###
+DELETE  http://localhost:5000/api/posts/62de609d0b20091a058f8c63
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRkMTE1YmRkMjUxOTYzNTE3YWRiYjUiLCJpYXQiOjE2NTg3NDEwMDd9.qBV8sABHK_GEmDGv4tQEl07zR2GegfD76mhRu_hxFUQ
+
+### 
+
+PUT http://localhost:5000/api/auth/update
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmQ3YjBjMTVlMmQ2NjEzNTYzYzljYTkiLCJpYXQiOjE2NTgzMjYxNjd9.CiR614dNP1tvy6lcJ-064t6zCLXkhddR_cQPI-9KFSk
+
+{
+  "username": "truongvip23",
+  "email": "truong.com"
+}
+
+###
+
+PUT http://localhost:5000/api/auth/changePassword
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmQ3YjBjMTVlMmQ2NjEzNTYzYzljYTkiLCJpYXQiOjE2NTgzMjYxNjd9.CiR614dNP1tvy6lcJ-064t6zCLXkhddR_cQPI-9KFSk
+
+{
+  "oldPassword": "123",
+  "newPassword": "12345",
+  "confirmPassword": "12345"
+}
+
+###
+
+GET http://localhost:5000/api/posts/search
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRkMTE1YmRkMjUxOTYzNTE3YWRiYjUiLCJpYXQiOjE2NTg2NzM3Mzl9.Tkggg8jEswsEjZl7f7FHJNo6BGcbJebWdEQs4s-e4ac
+
+
+{
+  "title": "second test img"
+}
