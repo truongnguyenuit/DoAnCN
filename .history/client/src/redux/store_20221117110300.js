@@ -6,13 +6,12 @@ import storage from "redux-persist/lib/storage";
 import authSlice from "./authSlice";
 import authorSlice from "./authorSlice";
 import categorySlice from "./categorySlice";
-import bookSlice from "./bookSlice";
+import bookSlice
 
 const reducer = combineReducers({
   auth: authSlice,
   author: authorSlice,
-  category: categorySlice,
-  book: bookSlice
+  category: categorySlice
 })
 
 const persistConfig = {

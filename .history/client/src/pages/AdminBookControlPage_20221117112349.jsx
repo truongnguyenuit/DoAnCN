@@ -1,5 +1,5 @@
-import React, { useState, useEffect,createContext } from 'react'
-import { Row, Col, Input, Button } from 'antd'
+import React, { useState, useEffect, createContext } from 'react'
+import { Row, Col, Input, Button, Select } from 'antd'
 import { useFormik } from "formik"
 
 import { createAuthorAPI } from '../redux/authorAPI.js'
@@ -7,13 +7,24 @@ import { getAllAuthorsAPI } from '../redux/authorAPI.js'
 import { updateAuthorAPI } from '../redux/authorAPI.js'
 import { deleteAuthorAPI } from '../redux/authorAPI.js'
 
+import { getAllBooksAPI } from '../redux/bookAPI.js'
+import { createBookAPI } from '../redux/bookAPI.js'
+import { updateBookAPI } from '../redux/bookAPI.js'
+import { deleteBookAPI } from '../redux/bookAPI.js'
+
 import { useSelector, useDispatch } from 'react-redux'
-import { Radio, Space, Table, Tag, Modal } from 'antd';
+import { Space, Table, Modal } from 'antd';
 import setAuthToken from '../untils/setAuthToken.js'
 
+const AdminBookControlPage = () => {
 
-const AdminAuthorPage = () => {
-  
+  const accessToken = useSelector((state) => state.auth.accessToken)
+  const data = useSelector((state) => state.book.books)
+
+  const categories = useSelector((state) => state.category.categories)
+  const authors = useSelector((state) => state.author.authors)
+
+  const dispatch = useDispatch()
 
   const columns = [
     {
@@ -30,29 +41,42 @@ const AdminAuthorPage = () => {
       ),
     },
     {
-      title: 'Tên tác giả',
+      title: 'Tên sách',
       dataIndex: 'fullName',
       key: 'fullName',
     },
     {
-      title: 'Địa chỉ',
+      title: 'Mô tả',
       dataIndex: 'address',
       key: 'address',
     },
+
     {
-      title: 'Năm sinh',
+      title: 'Số trang',
       dataIndex: 'birthDate',
-      key: 'birthDate', 
+      key: 'birthDate',
+
+    },
+    {
+      title: 'Xuất bản bởi',
+      dataIndex: 'birthDate',
+      key: 'birthDate',
+
+    },
+    {
+      title: 'Giá',
+      dataIndex: 'birthDate',
+      key: 'birthDate',
 
     },
     {
       title: 'Action',
       key: 'action',
       render: (_, record) => (
-        
+
         <Space size="middle">
-          <a onClick={()=>showUpdateModal(record._id)}>Edit</a>
-          <a onClick={()=>showDeleteModal(record._id)}>Delete</a>
+          <a onClick={() => showUpdateModal(record._id)}>Edit</a>
+          <a onClick={() => showDeleteModal(record._id)}>Delete</a>
 
           <Modal title="Alert " visible={isDeleteModalVisible} onOk={() => DeleteAuthor(modalFormik.values._id)} onCancel={handleDeleteCancel}>
             <p className='text-red-600'>Are you want to delete this blog?</p>
@@ -154,32 +178,37 @@ const AdminAuthorPage = () => {
     setIsUpdateModalVisible(false);
   };
 
-  const accessToken = useSelector((state) => state.auth.accessToken)
-  const data = useSelector((state) => state.author.authors)
-
-  const dispatch = useDispatch()
-
   const modalFormik = useFormik({
     initialValues: {
-      fullName: "",
-      address: "",
-      avatarUrl: "",
-      birthDate: "",
-      _id: ""
+      name: "",
+      coverUrl: "",
+      description: "",
+      pages: "",
+      publishedBy: "",
+      price: "",
+      publishedDate: "",
+      category: "",
+      author: ""
     }
   })
 
   const formik = useFormik({
     initialValues: {
-      fullName: "",
-      address: "",
-      avatarUrl: "",
-      birthDate: ""
+      name: "",
+      coverUrl: "",
+      description: "",
+      pages: "",
+      publishedBy: "",
+      price: "",
+      publishedDate: "",
+      category: "",
+      author: ""
     },
     onSubmit: async (values) => {
       try {
-        const response = await createAuthorAPI(values, dispatch)
+        const response = await createBookAPI(values, dispatch)
         alert(response.message)
+        console.log(response)
       } catch (error) {
         console.log(error)
       }
@@ -210,13 +239,14 @@ const AdminAuthorPage = () => {
   }
 
   useEffect(() => {
+    console.lo
     setAuthToken(accessToken)
-    getAllAuthorsAPI(dispatch)
+    getAllBooksAPI(dispatch)
   }, [])
 
   let AvataUrl
-  if (formik.values.avatarUrl === "") {
-    AvataUrl = "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1854&q=80"
+  if (formik.values.coverUrl === "") {
+    AvataUrl = "https://i.pinimg.com/736x/9f/d2/8f/9fd28f44bd39b185c23be01a820cbb2d.jpg"
   } else
     AvataUrl = formik.values.avatarUrl
 
@@ -224,18 +254,18 @@ const AdminAuthorPage = () => {
     <div className='bg-[#ecf0f1] w-[1263px] h-[5000px] ml-[256px] p-[40px] flex flex-col items-center'>
 
       <div className="font-bold text-xl">
-        QUẢN LÝ TÁC GIẢ
+        QUẢN LÝ SÁCH
       </div>
 
       <div className="bg-white w-full p-[50px] drop-shadow-lg rounded-md">
         <div className="text-lg font-bold">
-          Thêm tác giả
+          Thêm sách
         </div>
         <form onSubmit={formik.handleSubmit} className=''>
           <Row>
-            <Col span={12}>
+            <Col span={10}>
               <div className="flex flex-col items-center">
-                <div className="font-bold">Ảnh tác giả</div>
+                <div className="font-bold">Bìa sách</div>
                 <div className="bg-white rounded-[100px]">
                   <img
                     className="w-[400px] h-[400px] object-cover rounded-[5px]"
@@ -245,70 +275,154 @@ const AdminAuthorPage = () => {
                 </div>
               </div>
             </Col>
-            <Col span={12}>
-              <div className="flex flex-col gap-2">
-                <div className="font-bold">Tên tác giả:</div>
+            <Col span={7}>
+              <div className="flex flex-col gap-2 p-[10px]">
+                <div className="font-bold">Tên sách:</div>
                 <Input
                   type="text"
-                  placeholder="Tên tác giả"
+                  placeholder="Tên sách"
                   style={{
                     height: 45,
                     borderRadius: 5
                   }}
 
-                  id="fullName"
-                  name="fullName"
-                  value={formik.values.fullName}
+                  id="name"
+                  name="name"
+                  value={formik.values.name}
                   onChange={formik.handleChange}
                 />
-                <div className="font-bold">Địa chỉ:</div>
+                <div className="font-bold">Link ảnh bìa</div>
                 <Input
                   type="text"
-                  placeholder="Địa chỉ"
+                  placeholder="Link ảnh bìa"
                   style={{
                     height: 45,
                     borderRadius: 5
                   }}
 
-                  id="address"
-                  name="address"
-                  value={formik.values.address}
+                  id="coverUrl"
+                  name="coverUrl"
+                  value={formik.values.coverUrl}
                   onChange={formik.handleChange}
                 />
-                <div className="font-bold">Link hình ảnh:</div>
+                <div className="font-bold">Mô tả</div>
                 <Input
                   type="text"
-                  placeholder="Đường dẫn hình ảnh"
+                  placeholder="Mô tả sơ qua"
                   style={{
                     height: 45,
                     borderRadius: 5
                   }}
 
-                  id="avatarUrl"
-                  name="avatarUrl"
-                  value={formik.values.avatarUrl}
+                  id="description"
+                  name="description"
+                  value={formik.values.description}
                   onChange={formik.handleChange}
                 />
-                <div className="font-bold">Năm sinh:</div>
+                <div className="font-bold">Số trang</div>
                 <Input
                   type="text"
-                  placeholder="Năm sinh"
+                  placeholder="Số trang"
                   style={{
                     height: 45,
                     borderRadius: 5
                   }}
 
-                  id="birthDate"
-                  name="birthDate"
-                  value={formik.values.birthDate}
+                  id="pages"
+                  name="pages"
+                  value={formik.values.pages}
                   onChange={formik.handleChange}
                 />
-                <div className="font-bold text-red-500">* 4 thông tin trên đều bắt buộc phải có đủ</div>
+                <div className="font-bold">Nhà xuất bản</div>
+                <Input
+                  type="text"
+                  placeholder="Nhà xuất bản"
+                  style={{
+                    height: 45,
+                    borderRadius: 5
+                  }}
+
+                  id="publishedBy"
+                  name="publishedBy"
+                  value={formik.values.publishedBy}
+                  onChange={formik.handleChange}
+                />
+              </div>
+            </Col>
+            <Col span={7}>
+              <div className="flex flex-col gap-2 p-[10px]">
+                <div className="font-bold">Giá tiền</div>
+                <Input
+                  type="text"
+                  placeholder="Giá tiền"
+                  style={{
+                    height: 45,
+                    borderRadius: 5
+                  }}
+
+                  id="price"
+                  name="price"
+                  value={formik.values.price}
+                  onChange={formik.handleChange}
+                />
+                <div className="font-bold">Ngày phát hành</div>
+                <Input
+                  type="text"
+                  placeholder="Ngày phát hành"
+                  style={{
+                    height: 45,
+                    borderRadius: 5
+                  }}
+
+                  id="publishedDate"
+                  name="publishedDate"
+                  value={formik.values.publishedDate}
+                  onChange={formik.handleChange}
+                />
+                <div className="font-bold">Thể loại</div>
+                <Select
+                  defaultValue="Thể loại sách"
+                  style={{
+                    width: 300,
+                    height: 45,
+                    display: "flex",
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                  }}
+                  id="category"
+                  name="category"
+                  onChange={(value) => formik.setFieldValue("category", value)}
+                  options={categories.map((value, index) => ({
+                    key: index,
+                    label: value.name,
+                    value: value._id,
+                  }))}
+                />
+                <div className="font-bold">Tác giả</div>
+                <Select
+                  defaultValue="Tác giả sách"
+                  style={{
+                    width: 300,
+                    height: 45,
+                    display: "flex",
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                  }}
+                  id="author"
+                  name="author"
+                  onChange={(value) => formik.setFieldValue("author", value)}
+                  options={authors.map((value, index) => ({
+                    key: index,
+                    label: value.fullName,
+                    value: value._id,
+                  }))}
+                />
+                <div className="font-bold text-red-500">*Tất cả thông tin trên đều bắt buộc phải có</div>
                 <button
                   type="submit"
-                  className="bg-blue-500 w-full h-[45px] text-white rounded-[10px] mt-3"
+                  className="bg-blue-500 w-full h-[45px] text-white rounded-[10px] "
                 >
-                  Thêm tác giả
+                  Thêm sách
                 </button>
               </div>
             </Col>
@@ -323,10 +437,10 @@ const AdminAuthorPage = () => {
         </div>
 
         <div className="border border-zinc-300 w-full rounded-t-md p-[10px] text-base mt-[45px]">
-          <Table
+          {/* <Table
             columns={columns}
-            dataSource={data}
-          />
+           
+          /> */}
         </div>
       </div>
 
@@ -334,4 +448,4 @@ const AdminAuthorPage = () => {
   )
 }
 
-export default AdminAuthorPage
+export default AdminBookControlPage

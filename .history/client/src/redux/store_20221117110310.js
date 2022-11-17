@@ -11,7 +11,7 @@ import bookSlice from "./bookSlice";
 const reducer = combineReducers({
   auth: authSlice,
   author: authorSlice,
-  category: categorySlice,
+  category: categorySlice
   book: bookSlice
 })
 
