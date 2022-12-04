@@ -8,13 +8,13 @@ import SettingPage from "../pages/settingPage";
 import OderPage from "../pages/OderPage";
 import SearchPage from "../pages/SearchPage";
 
-import AdminBookControlPage from "../pages/AdminBookControlPage";
+import AdminBookControlPage from "../pages/AdminBookControlPage/AdminBookControlPage";
 import AdminConfirmPage from "../pages/AdminConfirmPage";
 import AdminDashboardPage from "../pages/AdminDashboardPage";
 import AdminUserPage from "../pages/AdminUserPage";
 import AdminVoucherPage from "../pages/AdminVoucherPage";
-import AdminAuthorPage from "../pages/AdminAuthorPage";
-import AdminCategoryPage from "../pages/AdminCategoryPage";
+import AdminAuthorPage from "../pages/AdminAuthorPage/AdminAuthorPage";
+import AdminCategoryPage from "../pages/AdminCategoryPage/AdminCategoryPage";
 
 import { pathName } from "./pathName";
 

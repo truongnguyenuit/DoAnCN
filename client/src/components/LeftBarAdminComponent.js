@@ -41,7 +41,7 @@ const LeftBarAdminComponent = () => {
         </div>
       </Link>
       <Menu
-        onClick={''}
+        // onClick={''}
         style={{ width: 256 }}
         // defaultSelectedKeys={['1']}
         // defaultOpenKeys={['sub1']}

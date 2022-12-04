@@ -77,9 +77,17 @@ const AdminBookControlPage = () => {
     },
     {
       title: 'Thể loại',
-      dataIndex: 'category',
       key: 'category',
-
+      render: (_, record) => (
+        <p>
+          {categories.map((value, index) => (
+        //    console.log(value._id)
+           console.log(JSON.parse(record.category))
+       //       (record.category == value._id) ?? console.log("valuename: ", value.name)
+          )
+          )}
+        </p>
+      )
     },
     {
       title: 'Tác giả',
@@ -258,7 +266,6 @@ const AdminBookControlPage = () => {
   useEffect(() => {
     setAuthToken(accessToken)
     getAllBooksAPI(dispatch)
-    console.log(data)
   }, [])
 
   let AvataUrl

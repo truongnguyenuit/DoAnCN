@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "@ant-design/icons": "^4.7.0"
+    "@ant-design/icons": "^4.7.0",
+    "react-slideshow-image": "^4.0.5"
   }
 }

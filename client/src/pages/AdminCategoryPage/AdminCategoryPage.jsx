@@ -1,16 +1,14 @@
-import React, { useState, useEffect,createContext } from 'react'
-import { Row, Col, Input, Button } from 'antd'
+import React, { useEffect } from 'react'
+import { Row, Col, Input } from 'antd'
 import { useFormik } from "formik"
 
-import { createCategoryAPI } from '../redux/categoryAPI.js'
-import { getAllCategoriesAPI } from '../redux/categoryAPI.js'
-import { updateCategoryAPI } from '../redux/categoryAPI.js'
-import { deleteCategoryAPI } from '../redux/categoryAPI.js'
+import { createCategoryAPI } from '../../redux/categoryAPI.js'
+import { getAllCategoriesAPI } from '../../redux/categoryAPI.js'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { Radio, Space, Table, Tag, Modal } from 'antd';
-import setAuthToken from '../untils/setAuthToken.js'
-
+import { Table } from 'antd';
+import setAuthToken from '../../untils/setAuthToken.js'
+import ModelEdit from './component/ModelEdit.jsx'
 
 const AdminCategoryPage = () => {
   
@@ -30,81 +28,13 @@ const AdminCategoryPage = () => {
       title: 'Action',
       key: 'action',
       render: (_, record) => (
+        <ModelEdit record={record} modalFormik={modalFormik}/>
         
-        <Space size="middle">
-          <a onClick={()=>showUpdateModal(record._id)}>Edit</a>
-          <a onClick={()=>showDeleteModal(record._id)}>Delete</a>
-
-          <Modal title="Alert " visible={isDeleteModalVisible} onOk={() => DeleteAuthor(modalFormik.values._id)} onCancel={handleDeleteCancel}>
-            <p className='text-red-600'>Are you want to delete this category?</p>
-          </Modal>
-
-          <Modal title="Update" visible={isUpdateModalVisible} onOk={() => UpdateAuthor(modalFormik.values._id)} onCancel={handleUpdateCancel}>
-            <form className='flex flex-col gap-2'>
-              <Input
-                type="text"
-                placeholder="Category"
-
-                id="name"
-                name='name'
-                value={modalFormik.values.name}
-                onChange={modalFormik.handleChange}
-                required
-                style={{
-                  height: 45,
-                  borderRadius: 5
-                }}
-              />
-              <Input
-                type="text"
-                placeholder="Description"
-
-                id="description"
-                name='description'
-                value={modalFormik.values.description}
-                onChange={modalFormik.handleChange}
-                required
-                style={{
-                  height: 45,
-                  borderRadius: 5
-                }}
-              />
-            </form>
-          </Modal>
-        </Space>
       ),
     },
   ];
 
-  const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
-
-  const showDeleteModal = (_id) => {
-    modalFormik.values._id = _id
-    setIsDeleteModalVisible(true);
-  };
-  const handleDeleteOk = () => {
-    modalFormik.values._id = ""
-    setIsDeleteModalVisible(false);
-  };
-  const handleDeleteCancel = () => {
-    modalFormik.values._id = ""
-    setIsDeleteModalVisible(false);
-  };
-
-  const [isUpdateModalVisible, setIsUpdateModalVisible] = useState(false);
-
-  const showUpdateModal = (_id) => {
-    modalFormik.values._id = _id
-    setIsUpdateModalVisible(true);
-  };
-  const handleUpdateOk = () => {
-    modalFormik.values._id = ""
-    setIsUpdateModalVisible(false);
-  };
-  const handleUpdateCancel = () => {
-    modalFormik.values._id = ""
-    setIsUpdateModalVisible(false);
-  };
+  
 
   const accessToken = useSelector((state) => state.auth.accessToken)
   const data = useSelector((state) => state.category.categories)
@@ -134,28 +64,7 @@ const AdminCategoryPage = () => {
     }
   })
 
-  const UpdateAuthor = async (authorId) => {
-    try {
-      console.log("in update author", authorId)
-      const response = await updateCategoryAPI(modalFormik.values, authorId, dispatch)
-      alert(response)
-      modalFormik.resetForm()
-    } catch (error) {
-      console.log(error)
-    }
-    handleUpdateOk()
-  }
-
-  const DeleteAuthor = async (authorId) => {
-    try {
-      console.log("in delete author", authorId)
-      const response = await deleteCategoryAPI(authorId, dispatch)
-      alert(response.message)
-    } catch (error) {
-      console.log(error)
-    }
-    handleDeleteOk()
-  }
+  
 
   useEffect(() => {
     setAuthToken(accessToken)
