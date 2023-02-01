@@ -2,7 +2,7 @@ import AuthLoginPage from "../pages/AuthLoginPage";
 import AuthRegisterPage from "../pages/AuthRegisterPage";
 import AuthLogoutPage from "../pages/AuthLogoutPage";
 
-import CartPage from "../pages/CartPage";
+import CartPage from "../pages/CartPage/CartPage";
 import DashboardPage from "../pages/DashboardPage";
 import SettingPage from "../pages/settingPage";
 import OderPage from "../pages/OderPage";
@@ -65,7 +65,7 @@ export const configRouter=[
     path: pathName.setting,
     page: <SettingPage/>,
     private: false,
-    admin: true,
+    admin: false  
   },
   {
     path: pathName.adminBookControl,

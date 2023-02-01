@@ -1,33 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import React, {  } from 'react'
 import { Link } from 'react-router-dom'
-import { Menu, Spin } from 'antd'
+import { Menu } from 'antd'
 import {
   AppstoreOutlined,
-  MailOutlined,
-  SettingOutlined,
-  AppstoreAddOutlined,
-  EyeOutlined,
   CheckOutlined,
   AreaChartOutlined,
   BarChartOutlined,
-  LineChartOutlined,
-  DownloadOutlined
-} from '@ant-design/icons'
+  LineChartOutlined} from '@ant-design/icons'
 import { pathName } from '../router/pathName'
 const { SubMenu } = Menu
 const LeftBarAdminComponent = () => {
-  // const currentUser = useSelector(state => state.auth.login.currentUser)
-  // const [image, setImage] = useState()
-  // useEffect(() => {
-  //   if (currentUser?.avatar_url) {
-  //     setImage(currentUser.avatar_url)
-  //   }
-  // }, [currentUser])
-  // const handleClick = e => {
-  //   console.log(e)
-  // }
-  //currentUser.avatar_url
+
   return (
     <div className="w-[256px] h-full bg-[#001529] fixed top-0">
       <Link to="/admin/setting">

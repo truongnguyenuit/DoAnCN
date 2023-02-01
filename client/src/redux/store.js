@@ -7,6 +7,7 @@ import authSlice from "./authSlice";
 import authorSlice from "./authorSlice";
 import categorySlice from "./categorySlice";
 import bookSlice from "./bookSlice";
+import orderSlice from "./orderSlice";
 
 const reducer = combineReducers({
   auth: authSlice,

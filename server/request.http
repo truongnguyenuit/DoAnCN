@@ -4,8 +4,8 @@ POST http://localhost:5000/api/auth/register
 Content-Type: application/json
 
 {
-  "username" : "truong1",
-  "password" : "truong"
+  "username" : "test4",
+  "password" : "11111111"
 }
 
 ### 
@@ -14,8 +14,8 @@ POST http://localhost:5000/api/auth/login
 Content-Type:  application/json
 
 {
-  "username": "truong1",
-  "password": "truong1"
+  "username": "test4",
+  "password": "11111111"
 }
 
 ###
@@ -25,6 +25,29 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmVjY
 ###
 GET http://localhost:5000/api/auth
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRkMTE1YmRkMjUxOTYzNTE3YWRiYjUiLCJpYXQiOjE2NTkwMjIwMDZ9.56Sb2U0Nc7hUkSlmmDG-oG40BFuXbIFzAyijl-QIhTs
+###
+PUT http://localhost:5000/api/cart/addToCart
+Content-Type: application/json 
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2M2MmIyMzE3ZTRiYzAwNjEwZTgwZTIiLCJpYXQiOjE2NzM5MzE1NTV9.nqQMrByfWcIHmcTPaa-tA8eRVymR26jVPEv5DCNULQY
+
+{
+  "cartNewItem": "6394440f96fdb0665e584688"
+}
+###
+PUT http://localhost:5000/api/cart/deleteFromCart
+Content-Type: application/json 
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2M2MmIyMzE3ZTRiYzAwNjEwZTgwZTIiLCJpYXQiOjE2NzQ3OTM1NTd9.aNgSbMZltaGO30Y0jUZF2EqVvVCQPyClpy61QQzO62E
+
+{
+  "cartDeleteItem": "6394427d96fdb0665e58467c"
+}
+###
+PUT http://localhost:5000/api/auth/test
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzJkOTcyZTA4ZjZlZDBkODhlMWQ5MDMiLCJpYXQiOjE2NzM1MTYzMTd9.5TVKMGZkGLrf2RTgcjVc2ub0kK_yNfSzklLEnnvuWSI
+
+{
+  "item": "asdasdasd"
+}
 ###
 
 POST http://localhost:5000/api/posts
@@ -150,6 +173,16 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmQ3Y
   "username": "asdasdasdasdasdasdasd",
   "email": "truong.com"
 }
+###
+PUT http://localhost:5000/api/auth/update
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzJkOTcyZTA4ZjZlZDBkODhlMWQ5MDMiLCJpYXQiOjE2NzI2MzQ2MzF9.4BRED15GMR-k6XQ8XKtSE_q9grVn9sfOZlS09jp5s2c
+
+{
+  "realname": "truuongtruong",
+  "username": "admin",
+  "email": "truong.com"
+}
 
 ###
 
@@ -169,7 +202,7 @@ GET http://localhost:5000/api/posts/search
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRkMTE1YmRkMjUxOTYzNTE3YWRiYjUiLCJpYXQiOjE2NTg2NzM3Mzl9.Tkggg8jEswsEjZl7f7FHJNo6BGcbJebWdEQs4s-e4ac
 
-
 {
   "title": "second test img"
 }
+

@@ -3,6 +3,7 @@ const router = express.Router()
 const argon2 = require('argon2')
 const jwt = require('jsonwebtoken')
 const verifyToken = require('../middleware/auth')
+const Book = require('../models/Book')
 
 const User = require('../models/User')
 const { route } = require('./post')
@@ -116,7 +117,7 @@ router.post('/login', async (req, res) => {
 
 router.put('/update', verifyToken, async (req, res) => {
 
-  const { realname, username, email, img } = req.body
+  const { realname, username, email, img, telephoneNumber, address } = req.body
 
   // Simple validation
 
@@ -134,6 +135,8 @@ router.put('/update', verifyToken, async (req, res) => {
     user.username = username
     user.email = email
     user.img = img
+    user.telephoneNumber = telephoneNumber
+    user.address = address
     await user.save()
 
     return res.json({ success: true, message: "User Update Complete!!!", user })
@@ -150,7 +153,7 @@ router.put('/update', verifyToken, async (req, res) => {
 
 router.put('/changePassword', verifyToken, async (req, res) => {
 
-  const { username, email, oldPassword, newPassword, confirmPassword } = req.body
+  const { oldPassword, newPassword, confirmPassword } = req.body
 
   // Simple validation
 
@@ -205,7 +208,7 @@ router.get('/getAllUser', verifyToken, async (req, res) => {
     console.log(error)
     res.status(500).json({ success: false, message: 'Internal Server Error' })
   }
-  
+
 })
 
 module.exports = router

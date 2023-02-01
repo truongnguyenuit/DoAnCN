@@ -22,9 +22,32 @@ const UserSchema = new schema({
     type: String,
     default: ''
   },
+  telephoneNumber: {
+    type: String,
+    default: ''
+  },
+  address: {
+    type: String,
+    default: ''
+  },
   role: {
-    type :String,
+    type: String,
     default: 'user'
+  },
+  cart: {
+    type: [
+      {
+        book: {
+          type: mongoose.Types.ObjectId,
+          ref: 'book'
+        },
+        amount: {
+          type: Number,
+          default: '1',
+        }
+      }
+    ],
+    default: []
   },
   createAt: {
     type: Date,
