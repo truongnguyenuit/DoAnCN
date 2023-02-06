@@ -6,15 +6,24 @@ const CommentSchema = new mongoose.Schema({
     ref: 'Book'
   },
   account: {
-    type: mongoose.Types.ObjectId,
-    ref: 'account'
+    type: String,
+    default: ''
   },
-  rating: {
-    type: Number
+  userImage: {
+    type: String,
+    default: ''
   },
   content: {
-    type: String
+    type: String,
+    default: ''
+  },
+  createAt: {
+    type: Date,
+    default: Date.now
   }
+  // rating: {
+  //   type: Number
+  // },
 })
 
 module.exports = mongoose.model('comment', CommentSchema)

@@ -13,7 +13,8 @@ const reducer = combineReducers({
   auth: authSlice,
   author: authorSlice,
   category: categorySlice,
-  book: bookSlice
+  book: bookSlice,
+  order: orderSlice
 })
 
 const persistConfig = {

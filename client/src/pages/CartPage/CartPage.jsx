@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import setAuthToken from '../../untils/setAuthToken';
 import { Button, Input, Modal } from "antd";
 import { createOrderAPI } from '../../redux/orderAPI';
+import { getAllUserOdersAPI } from '../../redux/orderAPI';
 import { useState } from 'react';
 
 const { TextArea } = Input
@@ -21,7 +22,7 @@ const CartPage = () => {
 
   const dataSource = cart.map((value) => value);
 
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -64,7 +65,12 @@ const CartPage = () => {
           {books.map((value) => {
             if (value._id === record._id) {
               return (
-                <span>{value.price} ₫</span>
+                <span>
+                  {new Intl.NumberFormat('vi-VN', {
+                    style: 'currency',
+                    currency: 'VND'
+                  }).format(value.price)}
+                </span>
               )
             }
           })}
@@ -84,7 +90,12 @@ const CartPage = () => {
           {books.map((value) => {
             if (value._id === record._id) {
               return (
-                <span>{value.price * record.amount} ₫</span>
+                <span>
+                  {new Intl.NumberFormat('vi-VN', {
+                    style: 'currency',
+                    currency: 'VND'
+                  }).format(value.price * record.amount)}
+                </span>
               )
             }
           })}
@@ -154,20 +165,23 @@ const CartPage = () => {
   const [message, setMessenger] = useState('')
 
   return (
-    <div className='h-[1120px] bg-[#ecf0f1] mt-[80px] ml-[300px] flex flex-col gap-4'>
+    <div className='h-[1120px] bg-[#E8F1FF] mt-[70px] ml-[300px] flex flex-col gap-4 p-[10px]'>
 
-      <div className="pl-[50px] pr-[50px] pt-[20px] pb-[20px] mt-[15px] bg-white">
-        <span className="font-bold text-lg"> Địa chỉ nhận hàng:</span>
+      <div className="pl-[50px] pr-[50px] pt-[20px] pb-[20px] mt-[15px] bg-white rounded-[5px] drop-shadow-md">
+        <span className="font-bold text-base"> Địa chỉ nhận hàng:</span>
         <br />
         <span className="text-base font-bold">{user.realname} - </span>
         <span className="text-base font-bold">{user.telephoneNumber} - </span>
         <span className="text-base">{user.address}</span>
       </div>
 
-      <div className="pl-[50px] pt-[20px] pr-[50px] bg-white">
-        <Table dataSource={dataSource} columns={columns} />
+      <div className="pl-[50px] py-[20px] pr-[50px] bg-white rounded-[5px] drop-shadow-md">
+        <div className="border-2 border-[#91d5ff] p-[5px] rounded-[5px] bg-[#e6f7ff]">
+          <Table dataSource={dataSource} columns={columns} />
+        </div>
       </div>
-      <div className="pl-[50px] pt-[20px] pr-[50px] pb-[20px] bg-white flex flex-row justify-between h-[60px] items-center">
+
+      <div className="pl-[50px] pt-[20px] pr-[50px] pb-[20px] bg-white flex flex-row justify-between h-[60px] items-center rounded-[5px] drop-shadow-md">
         <span className="font-bold">Mã giảm giá:</span>
         <Input
           style={{
@@ -177,7 +191,7 @@ const CartPage = () => {
         <Button>Áp dụng</Button>
       </div>
 
-      <div className="pl-[50px] pt-[20px] pr-[50px] pb-[20px] bg-white flex flex-row justify-between h-[150px]">
+      <div className="pl-[50px] pt-[20px] pr-[50px] pb-[20px] bg-white flex flex-row justify-between h-[150px] rounded-[5px] drop-shadow-md">
 
         <div className="flex flex-row items-center gap-3">
           <div className="border-[1px] border-[#FF4D4F] h-fit p-[3px]">
@@ -202,26 +216,39 @@ const CartPage = () => {
 
         <div className="flex flex-row gap-20">
           <div className="flex flex-col items-end justify-between">
-            <span className="text-xs">Tạm tính:</span>
-            <span className="text-xs">Phí vận chuyển:</span>
-            <span className="text-xs">Giảm giá:</span>
-            <span className="text-xs">Tổng số tiền:</span>
+            <span className="text-sm">Tạm tính:</span>
+            <span className="text-sm">Phí vận chuyển:</span>
+            <span className="text-sm">Giảm giá:</span>
+            <span className="text-sm">Tổng số tiền:</span>
           </div>
           <div className="flex flex-col items-end justify-between ">
-            <span className="text-xs">{sum} ₫</span>
-            <span className="text-xs">50000 ₫</span>
-            <span className="text-xs">.</span>
-            <span className="text-base text-[#FF4D4F]">{sum + 50000} ₫</span>
+            <span className="text-sm">
+              {new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+              }).format(sum)}
+            </span>
+            <span className="text-sm">
+              {new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+              }).format(50000)}
+            </span>
+            <span className="text-sm">.</span>
+            <span className="text-lg text-[#FF4D4F]">
+              {new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+              }).format(sum + 50000)}
+            </span>
           </div>
         </div>
       </div>
 
-      <div className="pl-[50px] pt-[20px] pr-[50px] pb-[20px] bg-white flex justify-end items-center">
-        <button className="bg-[#FF4D4F] text-white p-[5px]" onClick={() => showModal()}>Đặt hàng</button>
-        <Modal title="Basic Modal" open={isModalOpen} onOk={() => handleSubmit()} onCancel={handleCancel}>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
+      <div className="pl-[50px] pt-[20px] pr-[50px] pb-[20px] bg-white flex justify-end items-center rounded-[5px] drop-shadow-md">
+        <button className="bg-[#FF4D4F] text-white py-[5px] px-[10px] rounded-[5px] drop-shadow-md" onClick={() => showModal()}>Đặt hàng</button>
+        <Modal title="Xác nhận đơn hàng" visible={isModalOpen} onOk={() => handleSubmit()} onCancel={handleCancel}>
+          <p>Bạn xác nhận đặt hàng?</p>
         </Modal>
       </div>
 

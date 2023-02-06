@@ -37,8 +37,8 @@ const LeftBarComponent = () => {
         <Menu.Item icon={<ShoppingCartOutlined />} key="cart">
           <Link to={pathName.cart}>Giỏ hàng</Link>
         </Menu.Item>
-        <Menu.Item icon={<ShopOutlined />} key="oder">
-          <Link to={pathName.oder}>Đơn hàng của bạn</Link>
+        <Menu.Item icon={<ShopOutlined />} key="order">
+          <Link to={pathName.order}>Đơn hàng của bạn</Link>
         </Menu.Item>
         <Menu.Item icon={<SettingOutlined />} key="setting">
           <Link to={pathName.setting}>Thông tin cá nhân</Link>

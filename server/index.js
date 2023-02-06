@@ -9,6 +9,7 @@ const categoryRouter = require('./routes/category')
 const bookRouter = require('./routes/book')
 const cartRouter = require('./routes/cart')
 const orderRouter = require('./routes/order')
+const commentRouter = require('./routes/comment')
 
 const cors = require('cors')
 
@@ -42,5 +43,6 @@ app.use('/api/category', categoryRouter)
 app.use('/api/book', bookRouter)
 app.use('/api/cart', cartRouter)
 app.use('/api/order', orderRouter)
+app.use('/api/comment', commentRouter)
 
 app.listen(5000, () => console.log(`server started on port 5000`))

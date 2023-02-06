@@ -36,9 +36,13 @@ const OrderSchema = new mongoose.Schema(
       default: ''
     },
     status: {
-      type: Number, //-3 giao hang khong thanh cong,  -2 huy, -1 tu choi, 0 cho xac nhan, 1 xac nhan, 2 van chuyen, 3 giao thanh cong, 4 da nhan hang
-      default: 0
+      type: String, //-3 giao hang khong thanh cong,  -2 huy, -1 tu choi, 0 cho xac nhan, 1 xac nhan, 2 van chuyen, 3 giao thanh cong, 4 da nhan hang
+      default: 'Chờ xác nhận'
     },
+    createAt: {
+      type: Date,
+      default: Date.now
+    }
     // voucher: {
     //   code: {
     //     type: String,

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { login, logout, update } from './authSlice'
+import { login, logout, update, updateAllUsers } from './authSlice'
 
 export const registerUser = async (userForm, navigate) => {
   try {
@@ -23,7 +23,7 @@ export const loginUser = async (userForm, dispatch, navigate) => {
       if (response.data.user.role === "user")
         navigate("/")
       else
-        navigate("/admin")
+        navigate("/admin/bookcontrol")
     }
 
     return response.data
@@ -100,7 +100,17 @@ export const deleteItemFromCart = async (ItemId, dispatch) => {
   }
 }
 
+export const getAllUsers = async (dispatch) => {
+  try {
+    const response = await axios.get(`http://localhost:5000/api/auth/getAllUser`)
+    console.log("response", response.data)
+    if (response.data.success) {
+      dispatch(updateAllUsers(response.data.users))
+    }
 
-
-
+  } catch (error) {
+    if (error.response.data) return error.response.data
+    else return { success: false, message: error.message }
+  }
+}
 

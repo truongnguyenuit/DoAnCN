@@ -13,7 +13,7 @@ const LeftBarAdminComponent = () => {
 
   return (
     <div className="w-[256px] h-full bg-[#001529] fixed top-0">
-      <Link to="/admin/setting">
+      <Link to="/setting">
         <div className="w-[110px] flex justify-between items-center m-[20px] text-white">
           <img
             className="h-[50px] w-[50px] object-cover cursor-pointer rounded-[10px]"
@@ -31,9 +31,9 @@ const LeftBarAdminComponent = () => {
         mode="inline"
         theme="dark"
       >
-        <Menu.Item icon={<AreaChartOutlined />} key="dashboard">
+        {/* <Menu.Item icon={<AreaChartOutlined />} key="dashboard">
           <Link to={pathName.adminDashboard}>Trang chủ</Link>
-        </Menu.Item>
+        </Menu.Item> */}
         <Menu.Item icon={<BarChartOutlined />} key="genre">
           <Link to={pathName.adminBookControl}>Quản lý sách</Link>
         </Menu.Item>
@@ -46,9 +46,9 @@ const LeftBarAdminComponent = () => {
         <Menu.Item icon={<CheckOutlined />} key="confirm">
           <Link to={pathName.adminConfirm}>Phê duyệt</Link>
         </Menu.Item>
-        <Menu.Item icon={<AppstoreOutlined />} key="voucher">
+        {/* <Menu.Item icon={<AppstoreOutlined />} key="voucher">
           <Link to={pathName.adminVoucher}>Khuyến mãi</Link>
-        </Menu.Item>
+        </Menu.Item> */}
       </Menu>
     </div>
   )

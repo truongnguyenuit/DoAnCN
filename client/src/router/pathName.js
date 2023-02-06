@@ -7,8 +7,10 @@ export const pathName = {
   dashboard: "/",
   search: "/search",
   cart: "/cart",
-  oder: "/oder",
+  order: "/order",
   setting: "/setting",
+
+  bookDetail: "/bookDetail",
 
   adminDashboard: "/admin",
   adminAddBook: "/admin/addbook",

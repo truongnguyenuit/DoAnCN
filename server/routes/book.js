@@ -102,4 +102,23 @@ router.delete('/:id', verifyToken, async (req, res) => {
   }
 })
 
+router.get('/:id', verifyToken, async (req, res) => {
+  try {
+
+    const book = await Book.findById(req.params.id)
+
+    if (!book)
+      return res.status(401).json({
+        success: false,
+        message: 'Book Not Found!'
+      })
+      
+    return res.json({ success: true, message: "Book found!", book: book })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ success: false, message: 'Internal Server Error' })
+
+  }
+})
+
 module.exports = router

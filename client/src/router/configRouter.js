@@ -5,11 +5,13 @@ import AuthLogoutPage from "../pages/AuthLogoutPage";
 import CartPage from "../pages/CartPage/CartPage";
 import DashboardPage from "../pages/DashboardPage";
 import SettingPage from "../pages/settingPage";
-import OderPage from "../pages/OderPage";
+import OrderPage from "../pages/OrderPage";
 import SearchPage from "../pages/SearchPage";
 
+import BookDetailPage from "../pages/BookDetailPage/BookDetailPage";
+
 import AdminBookControlPage from "../pages/AdminBookControlPage/AdminBookControlPage";
-import AdminConfirmPage from "../pages/AdminConfirmPage";
+import AdminConfirmPage from "../pages/AdminConfirmPage/AdminConfirmPage";
 import AdminDashboardPage from "../pages/AdminDashboardPage";
 import AdminUserPage from "../pages/AdminUserPage";
 import AdminVoucherPage from "../pages/AdminVoucherPage";
@@ -18,96 +20,102 @@ import AdminCategoryPage from "../pages/AdminCategoryPage/AdminCategoryPage";
 
 import { pathName } from "./pathName";
 
-export const configRouter=[
+export const configRouter = [
   {
     path: pathName.login,
-    page: <AuthLoginPage/>,
+    page: <AuthLoginPage />,
     private: false,
     admin: false,
   },
   {
     path: pathName.register,
-    page: <AuthRegisterPage/>,
+    page: <AuthRegisterPage />,
     private: false,
     admin: false,
   },
   {
     path: pathName.logout,
-    page: <AuthLogoutPage/>,
+    page: <AuthLogoutPage />,
     private: false,
     admin: false,
   },
   {
     path: pathName.cart,
-    page: <CartPage/>,
+    page: <CartPage />,
     private: false,
     admin: false,
   },
   {
     path: pathName.dashboard,
-    page: <DashboardPage/>,
+    page: <DashboardPage />,
     private: false,
     admin: false,
   },
   {
-    path: pathName.oder,
-    page: <OderPage/>,
+    path: pathName.order,
+    page: <OrderPage />,
     private: false,
     admin: false,
   },
   {
     path: pathName.search,
-    page: <SearchPage/>,
+    page: <SearchPage />,
     private: false,
     admin: false,
   },
   {
     path: pathName.setting,
-    page: <SettingPage/>,
+    page: <SettingPage />,
     private: false,
-    admin: false  
+    admin: false
+  },
+  {
+    path: pathName.bookDetail,
+    page: <BookDetailPage />,
+    private: false,
+    admin: false
   },
   {
     path: pathName.adminBookControl,
-    page: <AdminBookControlPage/>,
+    page: <AdminBookControlPage />,
     private: true,
     admin: true,
   },
   {
     path: pathName.adminConfirm,
-    page: <AdminConfirmPage/>,
+    page: <AdminConfirmPage />,
     private: true,
     admin: true,
   },
   {
     path: pathName.adminDashboard,
-    page: <AdminDashboardPage/>,
+    page: <AdminDashboardPage />,
     private: true,
     admin: true,
   },
   {
     path: pathName.adminUser,
-    page: <AdminUserPage/>,
+    page: <AdminUserPage />,
     private: true,
     admin: true,
   },
   {
     path: pathName.adminVoucher,
-    page: <AdminVoucherPage/>,
+    page: <AdminVoucherPage />,
     private: true,
     admin: true,
   },
   {
     path: pathName.adminAuthor,
-    page: <AdminAuthorPage/>,
+    page: <AdminAuthorPage />,
     private: true,
     admin: true,
   },
   {
     path: pathName.adminCategory,
-    page: <AdminCategoryPage/>,
+    page: <AdminCategoryPage />,
     private: true,
     admin: true,
   }
-  
+
 ]

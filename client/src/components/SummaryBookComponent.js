@@ -2,17 +2,19 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Button } from 'antd'
 import { addItemToCart } from '../redux/authAPI'
+import { updateBookCurrent } from '../redux/bookSlice'
 
 const SummaryBookComponent = (props) => {
   const categories = useSelector((state) => state.category.categories)
   const authors = useSelector((state) => state.author.authors)
   const dispatch = useDispatch()
   const book = props.data
+  const navigate = props.navigate
 
   const submitButton = async () => {
     try {
       let request = {
-        cartNewItem : book._id
+        cartNewItem: book._id
       }
       const response = await addItemToCart(request, dispatch)
       alert(response.message)
@@ -20,12 +22,18 @@ const SummaryBookComponent = (props) => {
     } catch (error) {
       console.log(error)
     }
-
   }
-  return (
-    <div className='bg-white w-[271px] h-[250px] flex flex-row rounded-md overflow-hidden drop-shadow-sm'>
+  
+  const GotoDetail = async () => {
+    console.log(book)
+    dispatch(updateBookCurrent(book))
+    navigate("/bookDetail")
+  }
 
-      <div className="w-[150px] h-[250px] bg-red-500">
+  return (
+    <div className='bg-white w-[271px] h-[250px] flex flex-row rounded-md overflow-hidden drop-shadow-md'>
+
+      <div className="w-[150px] h-[250px] bg-red-100">
 
         <img
           className="h-[250px] object-cover overflow-hidden"
@@ -44,8 +52,15 @@ const SummaryBookComponent = (props) => {
           )
         })}
         </span>
-        <span className="font-[600] text-[20px]">{book.price} đ</span>
-        <Button className='w-full' onClick={()=> submitButton()}>Add to cart</Button>
+        <span className="font-[600] text-[20px]">{new Intl.NumberFormat('vi-VN', {
+          style: 'currency',
+          currency: 'VND'
+        }).format(book.price)} </span>
+        <div className="">
+          <Button className='w-full' onClick={() => GotoDetail()}>Chi tiết</Button>
+          <Button className='w-full mt-[5px]' onClick={() => submitButton()}>Giỏ Hàng</Button>
+        </div>
+
       </div>
 
 

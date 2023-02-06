@@ -23,12 +23,49 @@ export const createOrderAPI = async (order, dispatch) => {
 export const getAllUserOdersAPI = async (dispatch) => {
   try {
     const response = await axios.get(`http://localhost:5000/api/order/getAllUserOrders`)
-    // dispatch(getAllBooks(response.data.books))
-    console.log(response)
+    if (response.data.success) {
+      dispatch(updateOrder(response.data.orders))
+    }
+    return response.data
   } catch (error) {
-    console.log(error)
+    if (error.response.data)
+      return error.response.data
+    else
+      return { success: false, message: error.message }
   }
 }
+
+export const  confirmOrderAPI = async (orderId, dispatch) => {
+  try {
+    const response = await axios.put(`http://localhost:5000/api/order/confirmOrder`, orderId)
+    if (response.data.success) {
+      dispatch(updateOrder(response.data.orders))
+    }
+    return response.data.message
+  } catch (error) {
+    if (error.response.data)
+      return error.response.data
+    else
+      return { success: false, message: error.message }
+  }
+}
+
+export const refuseOrderAPI = async (orderId, dispatch) => {
+  try {
+    console.log(orderId)
+    const response = await axios.put(`http://localhost:5000/api/order/refuseOrder`, orderId)
+    if (response.data.success) {
+      dispatch(updateOrder(response.data.orders))
+    }
+    return response.data.message
+  } catch (error) {
+    if (error.response.data)
+      return error.response.data
+    else
+      return { success: false, message: error.message }
+  }
+}
+
 
 
 // export const updateBookAPI = async (bookForm, bookId, dispatch) => {

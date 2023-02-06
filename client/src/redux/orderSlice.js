@@ -17,8 +17,8 @@ const ordersSlice = createSlice({
     updateOrder: (state, action) => {
       state.orders = action.payload
     },
-    deleteOrder: (state, action) => { 
-      let newBooksData = state.books.filter(book => book._id !== action.payload)     
+    deleteOrder: (state, action) => {
+      let newBooksData = state.books.filter(book => book._id !== action.payload)
       state.books = newBooksData
     }
   }

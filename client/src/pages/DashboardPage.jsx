@@ -6,16 +6,21 @@ import setAuthToken from '../untils/setAuthToken';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllBooksAPI } from '../redux/bookAPI';
+import { getAllCommentsAPI } from '../redux/bookAPI';
 import BottomBarComponent from '../components/BottomBarComponent';
+import { useNavigate } from 'react-router-dom';
+import { text } from '../redux/bookSlice';
 
 const DashboardPage = () => {
   const accessToken = useSelector((state) => state.auth.accessToken)
   const allBooks = useSelector((state) => state.book.books)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   useEffect(() => {
     setAuthToken(accessToken)
     getAllBooksAPI(dispatch)
+    getAllCommentsAPI(dispatch)
   }, [])
 
   const images = [
@@ -24,9 +29,9 @@ const DashboardPage = () => {
     'https://www.sodapdf.com/blog/wp-content/uploads/2019/06/ereaders.jpg',
   ];
   return (
-    <div className="bg-[#ecf0f1] mt-[80px] ml-[300px] flex items-center justify-center flex-col gap-[20px] h-full">
+    <div className="bg-[#E8F1FF] mt-[80px] ml-[300px] flex items-center justify-center flex-col gap-[20px] h-full pt-[10px]">
 
-      <div className="w-11/12 overflow-hidden rounded-md drop-shadow-sm">
+      <div className="w-11/12 overflow-hidden rounded-md drop-shadow-md">
         <Slide>
           {images.map((image, index) => (
             <div className="" key={index}>
@@ -39,16 +44,16 @@ const DashboardPage = () => {
           ))}
         </Slide>
       </div>
-      <div className="w-11/12 flex flex-row gap-[10px] 	flex-wrap">
+      <div className="w-11/12 flex flex-row gap-[10px] 	flex-wrap drop-shadow-md">
 
         {allBooks.map((book, index) => {
           return (
-            <SummaryBookComponent data={book} />
+            <SummaryBookComponent data={book} navigate={navigate}/>
           )
         })}
 
       </div>
-      <div className="w-full h-[200px]">
+      <div className="w-full h-[200px] drop-shadow-md">
         <BottomBarComponent/>
       </div>
 

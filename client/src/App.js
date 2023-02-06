@@ -19,10 +19,10 @@ function App() {
                   path={item.path}
                   element={
                     <ProtectedRoute protect={item.private} admin={item.admin}>
-                      <div className="fixed top-0 z-20">
+                      <div className="fixed top-0 z-20 drop-shadow-md">
                         <LeftBarComponent />
                       </div>
-                      <div className="fixed top-0 left-[300px] right-0 z-10">
+                      <div className="fixed top-0 left-[300px] right-0 z-10 drop-shadow-md">
                         <TopBarComponent />
                       </div>
                       <div className="mt-[50px]"></div>

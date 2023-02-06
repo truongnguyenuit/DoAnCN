@@ -2,7 +2,7 @@ import React from 'react'
 import { Row, Col } from 'antd'
 const BottomBarComponent = () => {
   return (
-    <div className='w-full h-full bg-white p-[20px]'>
+    <div className='w-full h-full bg-white p-[20px] border-2'>
       <Row>
         <Col span={8}>
           <div className="font-[600] text-base">Hình thức thanh toán:</div>

@@ -97,10 +97,20 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzJkO
   "author": "634769103b1e5ef00df7de25"
 }
 ###
+GET http://localhost:5000/api/order/getAllUserOrders
+Content-Type: application/json 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2M2MmIyMzE3ZTRiYzAwNjEwZTgwZTIiLCJpYXQiOjE2NzUyNDE2NDJ9.JtKJ1s_rW4vMCB-jC9QO-pr4mnc1s7taH87HOnAYCbg
+
+{
+  "user": "63c62b2317e4bc00610e80e2"
+}
+
+###
 GET http://localhost:5000/api/posts
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRkMTE1YmRkMjUxOTYzNTE3YWRiYjUiLCJpYXQiOjE2NTg2NzM3Mzl9.Tkggg8jEswsEjZl7f7FHJNo6BGcbJebWdEQs4s-e4ac
 
 ###
+
 GET http://localhost:5000/api/posts/getAllBlogs
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRkMTE1YmRkMjUxOTYzNTE3YWRiYjUiLCJpYXQiOjE2NTg2NzM3Mzl9.Tkggg8jEswsEjZl7f7FHJNo6BGcbJebWdEQs4s-e4ac
 ###
@@ -113,6 +123,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRkM
 
 ###
 GET http://localhost:5000/api/book/getAllBooks
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRkMTE1YmRkMjUxOTYzNTE3YWRiYjUiLCJpYXQiOjE2NTg2NzM3Mzl9.Tkggg8jEswsEjZl7f7FHJNo6BGcbJebWdEQs4s-e4ac
+
+###
+
+GET http://localhost:5000/api/book/639441b796fdb0665e584671
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRkMTE1YmRkMjUxOTYzNTE3YWRiYjUiLCJpYXQiOjE2NTg2NzM3Mzl9.Tkggg8jEswsEjZl7f7FHJNo6BGcbJebWdEQs4s-e4ac
 
 ###
@@ -206,3 +221,30 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmRkM
   "title": "second test img"
 }
 
+###
+
+POST http://localhost:5000/api/comment/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2M2MmIyMzE3ZTRiYzAwNjEwZTgwZTIiLCJpYXQiOjE2NzUzNDc1NDZ9.zWcK-ARaYHoVYgwQtUQQiiPEuU9uknZ7MT62jdxayF4
+
+{
+  "book": "639441f996fdb0665e584676", 
+  "account": "truong nguyenaaaaaa",
+  "userImage": "https://kenh14cdn.com/thumb_w/660/2020/7/17/brvn-15950048783381206275371.jpg",
+  "content": "sach rất hayasdasdasdasdasd"
+}
+
+###
+
+GET http://localhost:5000/api/comment/getAllContents
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2M2MmIyMzE3ZTRiYzAwNjEwZTgwZTIiLCJpYXQiOjE2NzUzNDc1NDZ9.zWcK-ARaYHoVYgwQtUQQiiPEuU9uknZ7MT62jdxayF4
+###
+
+PUT http://localhost:5000/api/order/confirmOrder
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2M2MmIyMzE3ZTRiYzAwNjEwZTgwZTIiLCJpYXQiOjE2NzUzNDc1NDZ9.zWcK-ARaYHoVYgwQtUQQiiPEuU9uknZ7MT62jdxayF4
+
+{
+  "orderConfirm" : "63da09145821c966dfdd86f4"
+}
