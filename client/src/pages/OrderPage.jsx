@@ -121,7 +121,7 @@ const OrderPage = () => {
   return (
     <div className='h-[1120px] mt-[80px] ml-[300px] flex flex-col gap-4'>
 
-      <div className="pl-[50px] pt-[20px] pr-[50px] bg-[#E8F1FF] flex flex-col">
+      <div className="pl-[50px] pt-[20px] pr-[50px] bg-gradient-to-r from-cyan-200 to-pink-200 flex flex-col">
         {orders.map((value, index) => {
           return (
             <div className="bg-white p-[10px] m-[20px] rounded-[5px] drop-shadow-md gap-[10px] flex-col flex">

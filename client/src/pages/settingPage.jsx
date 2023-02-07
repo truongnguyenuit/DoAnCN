@@ -48,10 +48,10 @@ const settingPage = () => {
 
 
   return (
-    <div className='h-[1120px] bg-[#E8F1FF] mt-[80px] ml-[200px]'>
+    <div className='h-[1120px] bg-gradient-to-r from-cyan-200 to-pink-200 mt-[80px] ml-[200px]'>
 
       <div className="pl-[200px] pt-[50px] flex flex-col gap-[20px]">
-        <div className=" bg-white rounded-[5px] drop-shadow-md p-[15px] w-[1000px]">
+        <div className="bg-white-500/[0.5] rounded-[5px] bg-gradient-to-r from-cyan-100 to-pink-100 drop-shadow-md p-[15px] w-[1000px]">
           <Row>
             <div className="flex flex-col">
               <span className="font-bold text-lg">Hồ sơ của tôi</span>
@@ -172,7 +172,7 @@ const settingPage = () => {
           </form>
         </div>
 
-        <div className="bg-white rounded-[5px] drop-shadow-md p-[15px] w-[1000px]">
+        <div className="bg-gradient-to-r from-cyan-100 to-pink-100 rounded-[5px] drop-shadow-md p-[15px] w-[1000px]">
           <Row>
             <Col>
               <div className="flex flex-col">

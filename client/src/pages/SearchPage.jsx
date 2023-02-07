@@ -31,7 +31,7 @@ const SearchPage = () => {
     'https://www.sodapdf.com/blog/wp-content/uploads/2019/06/ereaders.jpg',
   ];
   return (
-    <div className="bg-[#E8F1FF] mt-[80px] ml-[300px] flex items-center justify-center flex-col gap-[20px] h-full pt-[40px]">
+    <div className="bg-gradient-to-r from-cyan-200 to-pink-200 mt-[80px] ml-[300px] flex items-center justify-center flex-col gap-[20px] h-full pt-[40px]">
 
       <div className="w-11/12 flex flex-row gap-[10px] 	flex-wrap drop-shadow-md">
 

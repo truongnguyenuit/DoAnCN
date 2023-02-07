@@ -36,43 +36,43 @@ export const configRouter = [
   {
     path: pathName.logout,
     page: <AuthLogoutPage />,
-    private: false,
+    private: true,
     admin: false,
   },
   {
     path: pathName.cart,
     page: <CartPage />,
-    private: false,
+    private: true,
     admin: false,
   },
   {
     path: pathName.dashboard,
     page: <DashboardPage />,
-    private: false,
+    private: true,
     admin: false,
   },
   {
     path: pathName.order,
     page: <OrderPage />,
-    private: false,
+    private: true,
     admin: false,
   },
   {
     path: pathName.search,
     page: <SearchPage />,
-    private: false,
+    private: true,
     admin: false,
   },
   {
     path: pathName.setting,
     page: <SettingPage />,
-    private: false,
+    private: true,
     admin: false
   },
   {
     path: pathName.bookDetail,
     page: <BookDetailPage />,
-    private: false,
+    private: true,
     admin: false
   },
   {

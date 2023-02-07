@@ -2,7 +2,7 @@ import React from 'react'
 import { Row, Col } from 'antd'
 const BottomBarComponent = () => {
   return (
-    <div className='w-full h-full bg-white p-[20px] border-2'>
+    <div className='w-full h-full bg-gradient-to-r from-blue-300 to-cyan-300  p-[20px]'>
       <Row>
         <Col span={8}>
           <div className="font-[600] text-base">Hình thức thanh toán:</div>
@@ -61,7 +61,6 @@ const BottomBarComponent = () => {
         </Col>
         <Col span={8}>
           <div className="font-[600] text-base">Tác giả:</div>
-          <div className="text-sm">Thiết kết bởi Dũng Nguyễn</div>
           <div className="text-sm">Viết bởi Trường Nguyễn</div>
           <div className="text-sm">Đồ án chuyên ngành</div>
           <div className="text-sm">Hướng dẫn bởi cô Hồng Nghi</div>

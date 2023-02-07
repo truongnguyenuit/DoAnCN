@@ -147,7 +147,7 @@ const AdminConfirmPage = () => {
     AvataUrl = formik.values.avatarUrl
 
   return (
-    <div className='bg-[#ecf0f1] w-[1263px] h-[5000px] ml-[256px] p-[40px] flex flex-col items-center'>
+    <div className='bg-gradient-to-r from-cyan-200 to-pink-200 w-[1263px] h-[5000px] ml-[256px] p-[40px] flex flex-col items-center'>
 
       <div className="font-bold text-xl">
         QUẢN LÝ ĐƠN HÀNG

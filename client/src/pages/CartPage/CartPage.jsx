@@ -165,7 +165,7 @@ const CartPage = () => {
   const [message, setMessenger] = useState('')
 
   return (
-    <div className='h-[1120px] bg-[#E8F1FF] mt-[70px] ml-[300px] flex flex-col gap-4 p-[10px]'>
+    <div className='h-[1120px] bg-gradient-to-r from-cyan-200 to-pink-200 mt-[70px] ml-[300px] flex flex-col gap-4 p-[10px]'>
 
       <div className="pl-[50px] pr-[50px] pt-[20px] pb-[20px] mt-[15px] bg-white rounded-[5px] drop-shadow-md">
         <span className="font-bold text-base"> Địa chỉ nhận hàng:</span>

@@ -14,10 +14,6 @@ import { useFormik } from "formik";
 const TopBarComponent = () => {
   const authors = useSelector((state) => state.author.authors)
   const categories = useSelector((state) => state.category.categories)
-  const books = useSelector((state) => state.book.books)
-  const booksFilter = useSelector((state) => state.book.booksFilter)
-
-  // const bookNameCurrent = useSelector((state) => state.book.bookNameCurrent)
 
   const formik = useFormik({
     initialValues: {
@@ -44,7 +40,7 @@ const TopBarComponent = () => {
 
   return (
 
-    <div className="bg-[#E8F1FF] border-b border-slate-300">
+    <div className="bg-gradient-to-r from-blue-300 to-cyan-300 ">
       <Row>
 
         <Col span={5}>
@@ -64,6 +60,9 @@ const TopBarComponent = () => {
               defaultValue="Tác giả"
               style={{
                 width: '20%',
+                borderTopLeftRadius: 6,
+                borderBottomLeftRadius: 6,
+                overflow: "hidden",
               }}
               onChange={(value) =>
                 dispatch(updateAuthorCurrent(value))
@@ -106,7 +105,7 @@ const TopBarComponent = () => {
               />
               <button
                 type="submit"
-                className="bg-blue-500 w-2/5 h-[31px] text-white rounded-[2px] flex justify-center items-center"
+                className="bg-blue-500 w-2/5 h-[31px] text-white rounded-[4px] flex justify-center items-center "
               >
                 <span className="text-sm ">Tìm sách</span>
               </button>

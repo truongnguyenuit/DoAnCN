@@ -38,9 +38,9 @@ const AuthRegisterPage = () => {
   })
 
   return (
-    <div className='  mt-[80px] flex justify-center bg-[#ecf0f1] h-[1000px]'>
+    <div className='  mt-[80px] flex justify-center bg-gradient-to-r from-cyan-200 to-pink-200 h-[1000px]'>
 
-      <div className="bg-white w-[475px] flex flex-col items-center gap-0.5 drop-shadow-lg p-8 mt-10 ml-72 h-fit rounded-md">
+      <div className="bg-gradient-to-r from-cyan-100 to-pink-100 w-[475px] flex flex-col items-center gap-0.5 drop-shadow-lg p-8 mt-10 ml-72 h-fit rounded-md">
 
         <span className="text-[40px] font-thin">
           REGISTER
@@ -146,8 +146,8 @@ const AuthRegisterPage = () => {
 
           <Row>
             <Col span={24}>
-              <div className="w-full h-[1px] p-0 bg-gray-200 relative">
-                <p className="absolute top-0 left-[50%] translate-x-[-50%] translate-y-[-50%] px-2 bg-white">
+              <div className="w-full h-[1px] p-0 bg-gradient-to-r from-cyan-100 to-pink-100 relative ">
+                <p className="absolute top-0 left-[50%] translate-x-[-50%] translate-y-[-50%] px-2 bg-gradient-to-r from-cyan-100 to-pink-100">
                   Login by
                 </p>
               </div>

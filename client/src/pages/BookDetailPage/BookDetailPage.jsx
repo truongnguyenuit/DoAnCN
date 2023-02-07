@@ -35,8 +35,8 @@ const BookDetailPage = () => {
   }
 
   return (
-    <div className='h-[1120px] bg-[#E8F1FF] mt-[80px] ml-[300px] px-[80px] py-[40px]'>
-      <div className=" flex flex-col gap-[20px] bg-white rounded-[5px] drop-shadow-md pb-[30px]">
+    <div className='h-full bg-gradient-to-r from-cyan-200 to-pink-200 mt-[80px] ml-[300px] px-[80px] py-[40px]'>
+      <div className=" flex flex-col gap-[20px] bg-gradient-to-r from-cyan-100 to-pink-100 rounded-[5px] drop-shadow-md pb-[30px]">
         <div className="border-b-[1px] p-[20px]">
           <span className="font-bold font-base text-lg">Thông tin sách</span>
         </div>
@@ -92,7 +92,7 @@ const BookDetailPage = () => {
         </Row>
       </div>
 
-      <div className="flex flex-col gap-[20px] bg-white rounded-[5px] drop-shadow-md mt-[15px]">
+      <div className="flex flex-col gap-[20px] bg-gradient-to-r from-cyan-100 to-pink-100 rounded-[5px] drop-shadow-md mt-[15px]">
         <div className="px-[20px]  mt-[20px]">
           <span className="font-bold font-base text-lg">Gửi đánh giá đến tác giả:</span>
         </div>
@@ -130,7 +130,7 @@ const BookDetailPage = () => {
         </Row>
       </div>
 
-      <div className="flex flex-col gap-[20px] bg-white rounded-[5px] drop-shadow-md mt-[15px]">
+      <div className="flex flex-col gap-[20px] bg-gradient-to-r from-cyan-100 to-pink-100 rounded-[5px] drop-shadow-md mt-[15px]">
         <div className="px-[20px]  mt-[20px]">
           <span className="font-bold font-base text-lg">Tất cả nhận xét</span>
         </div>
@@ -151,7 +151,7 @@ const BookDetailPage = () => {
         </Row>
       </div>
 
-    </div >
+    </div>
   )
 }
 
