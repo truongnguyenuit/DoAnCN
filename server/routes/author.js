@@ -9,7 +9,7 @@ const router = express.Router()
 router.post('/', verifyToken, async (req, res) => {
   const { fullName, address, avatarUrl, birthDate } = req.body
   if (!fullName || !address || !avatarUrl || !birthDate)
-    return res.status(400).json({ success: false, message: "Lack Of Infomation" })
+    return res.status(400).json({ success: false, message: "Form thông tin nhập vào bị thiếu" })
   try {
     const newAuthor = new Author({
       fullName: fullName,
@@ -18,10 +18,10 @@ router.post('/', verifyToken, async (req, res) => {
       birthDate: birthDate
     })
     await newAuthor.save()
-    res.status(200).json({ success: true, message: "Create Author Successful!!!", author: newAuthor })
+    res.status(200).json({ success: true, message: "Tạo tác giả thành công!!!", author: newAuthor })
   } catch (error) {
     console.log(error)
-    res.status(500).json({ success: false, message: 'Internal Server Error' })
+    res.status(500).json({ success: false, message: 'Kết nối mạng có vấn đề' })
   }
 })
 
@@ -33,7 +33,7 @@ router.get('/getAllAuthors', verifyToken, async (req, res) => {
     res.json({ success: true, authors })
   } catch (error) {
     console.log(error)
-    res.status(500).json({ success: false, message: 'Internal Server Error' })
+    res.status(500).json({ success: false, message: 'Kết nối mạng có vấn đề' })
   }
 })
 
@@ -43,7 +43,7 @@ router.put('/:id', verifyToken, async (req, res) => {
 
   const { fullName, address, avatarUrl, birthDate } = req.body
   if (!fullName || !address || !avatarUrl || !birthDate)
-    return res.status(400).json({ success: false, message: "Lack Of Infomation" })
+    return res.status(400).json({ success: false, message: "Form thông tin nhập vào bị thiếu" })
 
   try {
     let updateAuthor = {
@@ -63,14 +63,14 @@ router.put('/:id', verifyToken, async (req, res) => {
         .status(401)
         .json({
           success: false,
-          message: "Author not found of User Not Authorized"
+          message: "Tác giả hoặc tài khoản không được xác thực"
         })
 
-    res.json({ success: true, message: 'Update Successful!', author: updateAuthor})
+    res.json({ success: true, message: 'Cập nhập tác giả thành công', author: updateAuthor})
 
   } catch (error) {
     console.log(error)
-    res.status(500).json({ success: false, message: "Internal Server Error" })
+    res.status(500).json({ success: false, message: "Kết nối mạng có vấn đề" })
   }
 })
 
@@ -84,13 +84,13 @@ router.delete('/:id', verifyToken, async(req, res) => {
     if (!deletedAuthor)
       return res.status(401).json({
         success: false,
-        message: 'Author Found Or User Not Authorised'
+        message: 'Tác giả hoặc tài khoản không được xác thực'
       })
 
-      res.json({success: true, message: "Delete Author Succesful!!!", _id: req.params.id})
+      res.json({success: true, message: "Xóa tác giả thành công!!!", _id: req.params.id})
   } catch (error) {
     console.log(error)
-    res.status(500).json({ success: false, message: 'Internal Server Error' })
+    res.status(500).json({ success: false, message: 'Kết nối mạng có vấn đề' })
 
   }
 })

@@ -15,18 +15,18 @@ router.put('/addToCart', verifyToken, async (req, res) => {
   if (!cartNewItem) {
     return res
       .status(400)
-      .json({ success: false, message: 'Missing infomation' })
+      .json({ success: false, message: 'Thiếu thông tin nhập vào từ form' })
   }
 
   try {
     const user = await User.findById(req.userId)
     if (!user) {
-      return res.status(404).json({ message: "Invalid Account" });
+      return res.status(404).json({ message: "Tài khoản không xác thực" });
     }
 
     const BookAdd = await Book.findById(cartNewItem)
     if (!BookAdd) {
-      return res.status(404).json({ message: "Invalid Book" });
+      return res.status(404).json({ message: "Không tìm thấy sách" });
     }
     let bookExist = false;
 
@@ -64,7 +64,7 @@ router.put('/addToCart', verifyToken, async (req, res) => {
     }
 
     await user.save()
-    return res.json({ success: true, message: "Add item to cart Complete!!!", user: user })
+    return res.json({ success: true, message: "Thêm sách thành công!!!", user: user })
 
   } catch (error) {
     console.log(error)
@@ -79,18 +79,18 @@ router.put('/deleteFromCart', verifyToken, async (req, res) => {
   if (!cartDeleteItem) {
     return res
       .status(400)
-      .json({ success: false, message: 'Missing infomation' })
+      .json({ success: false, message: 'Thiếu thông tin nhập vào từ form' })
   }
 
   try {
     const user = await User.findById(req.userId)
     if (!user) {
-      return res.status(404).json({ message: "Invalid Account" });
+      return res.status(404).json({ message: "Tài khoản không xác thực" });
     }
 
     const BookAdd = await Book.findById(cartDeleteItem)
     if (!BookAdd) {
-      return res.status(404).json({ message: "Invalid Book" });
+      return res.status(404).json({ message: "Không tìm thấy sách" });
     }
     let bookExist = false;
 
@@ -101,7 +101,7 @@ router.put('/deleteFromCart', verifyToken, async (req, res) => {
     })
 
     if (!bookExist) {
-      return res.json({ success: false, message: "Book not in cart user" })
+      return res.json({ success: false, message: "Sách không tồn tại trong giỏ hàng" })
     } else {
 
       user.cart.map((value) => {
@@ -120,7 +120,7 @@ router.put('/deleteFromCart', verifyToken, async (req, res) => {
 
     await user.save()
 
-    return res.json({ success: true, message: "Delete Item Complete!!!", user: user })
+    return res.json({ success: true, message: "Xóa sách thành công!!!", user: user })
 
   } catch (error) {
     console.log(error)

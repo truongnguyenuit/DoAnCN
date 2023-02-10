@@ -18,7 +18,7 @@ const LeftBarComponent = () => {
 
   }
   return (
-    <div className='bg-gradient-to-tr from-purple-200 to-pink-200 h-[1000px]'>
+    <div className='bg-gradient-to-tr from-purple-300 to-pink-200 h-[1000px]'>
       <div className=" w-[300px] flex items-center justify-center mb-5">
         <img className='w-[150px] h-[230px] object-cover' src={newLogo}></img>
       </div>

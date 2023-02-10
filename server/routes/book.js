@@ -8,7 +8,7 @@ const Book = require('../models/Book')
 router.post('/', verifyToken, async (req, res) => {
   const { name, coverUrl, description, pages, publishedBy, price, publishedDate, category, author } = req.body
   if (!name || !coverUrl || !description || !pages || !publishedBy || !price || !publishedDate || !category || !author)
-    return res.status(400).json({ success: false, message: "Lack Of Infomation" })
+    return res.status(400).json({ success: false, message: "Thiếu thông tin nhập vào từ form" })
   try {
     const newBook = new Book({
       name: name,
@@ -22,10 +22,10 @@ router.post('/', verifyToken, async (req, res) => {
       author: author,
     })
     await newBook.save()
-    res.status(200).json({ success: true, message: "Create Book Successful!!!", book: newBook })
+    res.status(200).json({ success: true, message: "Tạo sách thành công!!!", book: newBook })
   } catch (error) {
     console.log(error)
-    res.status(500).json({ success: false, message: 'Internal Server Error', error: error })
+    res.status(500).json({ success: false, message: 'Kết nối mạng có vấn đề', error: error })
   }
 })
 
@@ -37,7 +37,7 @@ router.get('/getAllBooks', verifyToken, async (req, res) => {
     res.json({ success: true, books })
   } catch (error) {
     console.log(error)
-    res.status(500).json({ success: false, message: 'Internal Server Error' })
+    res.status(500).json({ success: false, message: 'Kết nối mạng có vấn đề' })
   }
 })
 
@@ -46,7 +46,7 @@ router.get('/getAllBooks', verifyToken, async (req, res) => {
 router.put('/:id', verifyToken, async (req, res) => {
   const { name, coverUrl, description, pages, publishedBy, price, publishedDate, category, author } = req.body
   if (!name || !coverUrl || !description || !pages || !publishedBy || !price || !publishedDate || !category || !author)
-    return res.status(400).json({ success: false, message: "Lack Of Infomation" })
+    return res.status(400).json({ success: false, message: "Thiếu thông tin nhập vào từ form" })
   try {
     let updateBook = {
       name: name,
@@ -70,14 +70,14 @@ router.put('/:id', verifyToken, async (req, res) => {
         .status(401)
         .json({
           success: false,
-          message: "Book not found of User Not Authorized"
+          message: "Không tìm thấy sách hoặc tài khoản không xác thực"
         })
 
-    res.json({ success: true, message: 'Update Successful!', book: updateBook })
+    res.json({ success: true, message: 'Cập nhập sách thành công!!!', book: updateBook })
 
   } catch (error) {
     console.log(error)
-    res.status(500).json({ success: false, message: "Internal Server Error", error: error })
+    res.status(500).json({ success: false, message: "Kết nối mạng có vấn đề", error: error })
   }
 })
 
@@ -91,13 +91,13 @@ router.delete('/:id', verifyToken, async (req, res) => {
     if (!deletedBook)
       return res.status(401).json({
         success: false,
-        message: 'Book Found Or User Not Authorised'
+        message: 'Không tìm thấy sách hoặc tài khoản không xác thực'
       })
 
-    res.json({ success: true, message: "Delete Book Succesful!!!", _id: req.params.id })
+    res.json({ success: true, message: "Xóa sách thành công!!!", _id: req.params.id })
   } catch (error) {
     console.log(error)
-    res.status(500).json({ success: false, message: 'Internal Server Error' })
+    res.status(500).json({ success: false, message: 'Kết nối mạng có vấn đề' })
 
   }
 })
@@ -110,13 +110,13 @@ router.get('/:id', verifyToken, async (req, res) => {
     if (!book)
       return res.status(401).json({
         success: false,
-        message: 'Book Not Found!'
+        message: 'Không tìm thấy sách!'
       })
       
-    return res.json({ success: true, message: "Book found!", book: book })
+    return res.json({ success: true, message: "Thấy rồi!", book: book })
   } catch (error) {
     console.log(error)
-    res.status(500).json({ success: false, message: 'Internal Server Error' })
+    res.status(500).json({ success: false, message: 'Kết nối mạng có vấn đề' })
 
   }
 })

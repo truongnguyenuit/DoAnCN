@@ -40,7 +40,7 @@ const TopBarComponent = () => {
 
   return (
 
-    <div className="bg-gradient-to-r from-blue-300 to-cyan-300 ">
+    <div className="bg-gradient-to-b from-blue-200 to-cyan-300 ">
       <Row>
 
         <Col span={5}>

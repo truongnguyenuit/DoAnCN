@@ -10,7 +10,7 @@ router.post('/', verifyToken, async (req, res) => {
   const { book, account, userImage, content } = req.body
 
   if (!book || !account || !userImage || !content)
-    return res.status(400).json({ success: false, message: "Lack Of Infomation" })
+    return res.status(400).json({ success: false, message: "Thiếu thông tin điền vào từ form" })
 
   try {
     const newComment = new Comment({
@@ -20,10 +20,10 @@ router.post('/', verifyToken, async (req, res) => {
       content: content
     })
     await newComment.save()
-    res.status(200).json({ success: true, message: "Create Content Successful!!!", newComment: newComment })
+    res.status(200).json({ success: true, message: "Tạo comment thành công!!!", newComment: newComment })
   } catch (error) {
     console.log(error)
-    res.status(500).json({ success: false, message: 'Internal Server Error' })
+    res.status(500).json({ success: false, message: 'Mạng của bạn có vấn đề!' })
   }
 })
 
@@ -35,7 +35,7 @@ router.get('/getAllContents', verifyToken, async (req, res) => {
     res.json({ success: true, comment: comment })
   } catch (error) {
     console.log(error)
-    res.status(500).json({ success: false, message: 'Internal Server Error' })
+    res.status(500).json({ success: false, message: 'Mạng của bạn có vấn đề!' })
   }
 })
 

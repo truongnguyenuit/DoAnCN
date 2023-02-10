@@ -8,17 +8,17 @@ const Category = require('../models/Category')
 router.post('/', verifyToken, async (req, res) => {
   const { name, description } = req.body
   if (!name || !description )
-    return res.status(400).json({ success: false, message: "Lack Of Infomation" })
+    return res.status(400).json({ success: false, message: "Thiếu thông tin nhập từ form" })
   try {
     const newCategory = new Category({
       name: name,
       description: description 
     })
     await newCategory.save()
-    res.status(200).json({ success: true, message: "Create Category Successful!!!", category: newCategory })
+    res.status(200).json({ success: true, message: "Tạo thể loại thành công!!!", category: newCategory })
   } catch (error) {
     console.log(error)
-    res.status(500).json({ success: false, message: 'Internal Server Error' })
+    res.status(500).json({ success: false, message: 'Mạng của bạn có vấn đề' })
   }
 })
 
@@ -30,7 +30,7 @@ router.get('/getAllCategories', verifyToken, async (req, res) => {
     res.json({ success: true, categories })
   } catch (error) {
     console.log(error)
-    res.status(500).json({ success: false, message: 'Internal Server Error' })
+    res.status(500).json({ success: false, message: 'Mạng của bạn có vấn đề' })
   }
 })
 
@@ -40,7 +40,7 @@ router.put('/:id', verifyToken, async (req, res) => {
 
   const { name, description } = req.body
   if (!name || !description)
-    return res.status(400).json({ success: false, message: "Lack Of Infomation" })
+    return res.status(400).json({ success: false, message: "Thiếu thông tin nhập từ form" })
 
   try {
     let updateCategory = {
@@ -58,14 +58,14 @@ router.put('/:id', verifyToken, async (req, res) => {
         .status(401)
         .json({
           success: false,
-          message: "Category not found of User Not Authorized"
+          message: "Không tìm thấy thể loại hoặc tài khoản không xác thực"
         })
 
-    res.json({ success: true, message: 'Update Successful!', category: updateCategory})
+    res.json({ success: true, message: 'Cập nhập thành công!', category: updateCategory})
 
   } catch (error) {
     console.log(error)
-    res.status(500).json({ success: false, message: "Internal Server Error" })
+    res.status(500).json({ success: false, message: "Mạng của bạn có vấn đề" })
   }
 })
 
@@ -79,13 +79,13 @@ router.delete('/:id', verifyToken, async(req, res) => {
     if (!deletedCategory)
       return res.status(401).json({
         success: false,
-        message: 'Category Not Found Or User Not Authorised'
+        message: 'Không tìm thấy thể loại hoặc tài khoản không xác thực'
       })
 
-      res.json({success: true, message: "Delete Category Succesful!!!", _id: req.params.id})
+      res.json({success: true, message: "Xóa thể loại thành công!!!", _id: req.params.id})
   } catch (error) {
     console.log(error)
-    res.status(500).json({ success: false, message: 'Internal Server Error' })
+    res.status(500).json({ success: false, message: 'Mạng của bạn có vấn đề' })
 
   }
 })

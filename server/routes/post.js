@@ -15,7 +15,7 @@ router.get('/search', verifyToken, async (req, res) => {
     res.json({ success: true, posts })
   } catch (error) {
     console.log(error)
-    res.status(500).json({ success: false, message: 'Internal Server Error' })
+    res.status(500).json({ success: false, message: 'Mạng của bạn có vấn đề' })
   }
 })
 
@@ -30,7 +30,7 @@ router.get('/', verifyToken, async (req, res) => {
     res.json({ success: true, posts })
   } catch (error) {
     console.log(error)
-    res.status(500).json({ success: false, message: 'Internal Server Error' })
+    res.status(500).json({ success: false, message: 'Mạng của bạn có vấn đề' })
   }
   
 })
@@ -45,7 +45,7 @@ router.get('/getAllBlogs', verifyToken, async (req, res) => {
     res.json({ success: true, posts })
   } catch (error) {
     console.log(error)
-    res.status(500).json({ success: false, message: 'Internal Server Error' })
+    res.status(500).json({ success: false, message: 'Mạng của bạn có vấn đề' })
   }
   
 })
@@ -75,7 +75,7 @@ router.post('/', verifyToken, async (req, res) => {
 
   } catch (error) {
     console.log(error)
-    res.status(500).json({ success: false, message: 'Internal Server Error' })
+    res.status(500).json({ success: false, message: 'Mạng của bạn có vấn đề' })
   }
 })
 
@@ -118,7 +118,7 @@ router.put('/:id', verifyToken, async (req, res) => {
 
   } catch (error) {
     console.log(error)
-    res.status(500).json({ success: false, message: 'Internal Server Error' })
+    res.status(500).json({ success: false, message: 'Mạng của bạn có vấn đề' })
   }
 })
 
@@ -140,7 +140,7 @@ router.delete('/:id', verifyToken, async(req, res) => {
       res.json({success: true, message: "Delete Blog Succesful!!!"})
   } catch (error) {
     console.log(error)
-    res.status(500).json({ success: false, message: 'Internal Server Error' })
+    res.status(500).json({ success: false, message: 'Mạng của bạn có vấn đề' })
 
   }
 })

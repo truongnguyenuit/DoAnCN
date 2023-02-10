@@ -11,7 +11,7 @@ router.post('/', verifyToken, async (req, res) => {
   const { user, books, amount, message } = req.body
 
   if (!user || !books || !amount || !message)
-    return res.status(400).json({ success: false, message: "Lack Of Infomation" })
+    return res.status(400).json({ success: false, message: "Thiếu thông tin điền vào từ form" })
 
   try {
     const newOrder = new Order({
@@ -23,10 +23,10 @@ router.post('/', verifyToken, async (req, res) => {
 
     await newOrder.save()
 
-    res.status(200).json({ success: true, message: "Create Order Successful!!!", order: newOrder })
+    res.status(200).json({ success: true, message: "Tạo order thành công!!!", order: newOrder })
   } catch (error) {
     console.log(error)
-    res.status(500).json({ success: false, message: 'Internal Server Error' })
+    res.status(500).json({ success: false, message: 'Mạng của bạn có vấn đề' })
   }
 })
 
@@ -36,7 +36,7 @@ router.get('/getAllUserOrders', verifyToken, async (req, res) => {
 
   const user = await User.findById(req.userId)
     if (!user)
-      return res.status(400).json({ success: false, message: 'User Not Found' })
+      return res.status(400).json({ success: false, message: 'Không tìm thấy tài khoản' })
 
   try {
     const orders = await Order.find().populate()
@@ -44,7 +44,7 @@ router.get('/getAllUserOrders', verifyToken, async (req, res) => {
 
   } catch (error) {
     console.log(error)
-    res.status(500).json({ success: false, message: 'Internal Server Error' })
+    res.status(500).json({ success: false, message: 'Mạng của bạn có vấn đề' })
   }
 })
 
@@ -54,7 +54,7 @@ router.put('/confirmOrder', verifyToken, async (req, res) => {
 
   const order = await Order.findById(orderConfirm)
     if (!order)
-      return res.status(400).json({ success: false, message: 'Order not found', orer: orderConfirm })
+      return res.status(400).json({ success: false, message: 'Không tìm thấy đơn hàng', orer: orderConfirm })
 
   try {
     order.status = "Đã xác nhận"
@@ -67,7 +67,7 @@ router.put('/confirmOrder', verifyToken, async (req, res) => {
 
   } catch (error) {
     console.log(error)
-    res.status(500).json({ success: false, message: 'Internal Server Error' })
+    res.status(500).json({ success: false, message: 'Mạng của bạn có vấn đề' })
   }
 })
 
@@ -77,7 +77,7 @@ router.put('/refuseOrder', verifyToken, async (req, res) => {
 
   const order = await Order.findById(orderRefuse)
     if (!order)
-      return res.status(400).json({ success: false, message: 'Order not found', orer: orderRefuse })
+      return res.status(400).json({ success: false, message: 'Không tìm thấy đơn hàng', orer: orderRefuse })
 
   try {
     order.status = "Từ chối"
@@ -90,7 +90,7 @@ router.put('/refuseOrder', verifyToken, async (req, res) => {
 
   } catch (error) {
     console.log(error)
-    res.status(500).json({ success: false, message: 'Internal Server Error' })
+    res.status(500).json({ success: false, message: 'Mạng của bạn có vấn đề' })
   }
 })
 
@@ -100,7 +100,7 @@ router.put('/refuseOrder', verifyToken, async (req, res) => {
 
 //   const { name, description } = req.body
 //   if (!name || !description)
-//     return res.status(400).json({ success: false, message: "Lack Of Infomation" })
+//     return res.status(400).json({ success: false, message: "Thiếu thông tin điền vào từ form" })
 
 //   try {
 //     let updateCategory = {
@@ -125,7 +125,7 @@ router.put('/refuseOrder', verifyToken, async (req, res) => {
 
 //   } catch (error) {
 //     console.log(error)
-//     res.status(500).json({ success: false, message: "Internal Server Error" })
+//     res.status(500).json({ success: false, message: "Mạng của bạn có vấn đề" })
 //   }
 // })
 
@@ -145,7 +145,7 @@ router.put('/refuseOrder', verifyToken, async (req, res) => {
 //     res.json({ success: true, message: "Delete Category Succesful!!!", _id: req.params.id })
 //   } catch (error) {
 //     console.log(error)
-//     res.status(500).json({ success: false, message: 'Internal Server Error' })
+//     res.status(500).json({ success: false, message: 'Mạng của bạn có vấn đề' })
 
 //   }
 // })
